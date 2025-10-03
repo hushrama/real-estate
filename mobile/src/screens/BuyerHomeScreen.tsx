@@ -1,16 +1,19 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { useProperties } from '../hooks/useProperties';
 import PropertyCard from '../components/PropertyCard';
-import { Property } from '../types';
+import { MainStackParamList } from '../types';
+
+type NavigationProp = StackNavigationProp<MainStackParamList>;
 
 export default function BuyerHomeScreen() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp>();
   const { properties, isLoading } = useProperties();
 
   const handlePropertyPress = (propertyId: string) => {
-    navigation.navigate('PropertyDetails' as never, { propertyId } as never);
+    navigation.navigate('PropertyDetails', { propertyId });
   };
 
   return (

@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ActivityIndicator, View } from 'react-native';
 
-import { RootStackParamList, BuyerTabParamList, SellerTabParamList } from '../types';
+import { RootStackParamList, BuyerTabParamList, SellerTabParamList, MainStackParamList } from '../types';
 import { useAuthStore } from '../store/authStore';
 import { useAuth } from '../hooks/useAuth';
 
@@ -20,7 +20,7 @@ import AddPropertyScreen from '../screens/AddPropertyScreen';
 const RootStack = createStackNavigator<RootStackParamList>();
 const BuyerTab = createBottomTabNavigator<BuyerTabParamList>();
 const SellerTab = createBottomTabNavigator<SellerTabParamList>();
-const MainStack = createStackNavigator();
+const MainStack = createStackNavigator<MainStackParamList>();
 
 function BuyerTabs() {
   return (

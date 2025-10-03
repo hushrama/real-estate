@@ -1,21 +1,25 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { useAuthStore } from '../store/authStore';
 import { useProperties } from '../hooks/useProperties';
 import PropertyCard from '../components/PropertyCard';
+import { MainStackParamList } from '../types';
+
+type NavigationProp = StackNavigationProp<MainStackParamList>;
 
 export default function SellerHomeScreen() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp>();
   const profile = useAuthStore(state => state.profile);
   const { properties, isLoading } = useProperties(profile?.id);
 
   const handlePropertyPress = (propertyId: string) => {
-    navigation.navigate('PropertyDetails' as never, { propertyId } as never);
+    navigation.navigate('PropertyDetails', { propertyId });
   };
 
   const handleAddProperty = () => {
-    navigation.navigate('AddProperty' as never);
+    navigation.navigate('AddProperty');
   };
 
   return (
